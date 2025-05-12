@@ -2,12 +2,12 @@
 
 # Function to check if a package is installed
 is_installed() {
-  dnf list installed | grep "$1" &>/dev/null
+  dnf list --installed | grep "$1" &>/dev/null
 }
 
 # Function to check if a package is installed
 is_group_installed() {
-  dnf group list | grep "$1" &>/dev/null
+  dnf group list --installed | grep "$1" &>/dev/null
 }
 
 # Function to install packages if not already installed
