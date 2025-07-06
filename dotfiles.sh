@@ -37,6 +37,7 @@ if [ $? -eq 0 ]; then
   stow --adopt hyprpaper
   stow --adopt rofi
   stow --adopt waybar
+  git restore .
 else
   echo "Failed to clone the repository."
   exit 1
