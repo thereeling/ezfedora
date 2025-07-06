@@ -14,15 +14,15 @@ is_group_installed() {
 is_copr_enabled() {
   local repo_name="$1"
   local repo_file_format="${repo_name//\//:}"
-  
+
   if ls /etc/yum.repos.d/*copr*"$repo_file_format"*.repo &>/dev/null; then
     return 0
   fi
-  
+
   if dnf repolist --enabled | grep -i "copr.*${repo_file_format}" &>/dev/null; then
     return 0
   fi
-  
+
   return 1
 }
 
@@ -47,7 +47,7 @@ install_packages() {
 enable_copr_repos() {
   local repos=("$@")
   local to_enable=()
-  
+
   for repo in "${repos[@]}"; do
     if ! is_copr_enabled "$repo"; then
       to_enable+=("$repo")
@@ -55,7 +55,7 @@ enable_copr_repos() {
       echo "COPR repo '$repo' is already enabled"
     fi
   done
-  
+
   if [ ${#to_enable[@]} -ne 0 ]; then
     echo "Enabling COPR repos: ${to_enable[*]}"
     for repo in "${to_enable[@]}"; do
@@ -70,3 +70,4 @@ enable_copr_repos() {
   else
     echo "All specified COPR repos are already enabled"
   fi
+}
