@@ -25,19 +25,18 @@ fi
 # Check if the clone was successful
 if [ $? -eq 0 ]; then
   cd "$REPO_NAME"
-  stow zshrc
-  stow nvim
-  stow starship
-  stow fonts
-  stow wezterm
-  stow wallpapers
-  stow hyprland
-  stow hyprlock
-  stow hypridle
-  stow hyprpaper
-  stow rofi
-  stow waybar
-  stow rofi-themes
+  stow --adopt zshrc
+  stow --adopt nvim
+  stow --adopt tmux
+  stow --adopt starship
+  stow --adopt fonts
+  stow --adopt wezterm
+  stow --adopt wallpapers
+  stow --adopt hyprland
+  stow --adopt hyprlock
+  stow --adopt hyprpaper
+  stow --adopt rofi
+  stow --adopt waybar
 else
   echo "Failed to clone the repository."
   exit 1
