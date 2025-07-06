@@ -14,8 +14,9 @@ fi
 
 # Add Flathub if it's not already added
 if ! flatpak remote-list | grep -q flathub; then
-  echo "Adding Flathub repository..."
+  echo "Adding Flathub and Flathub Beta repository..."
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  sudo flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 else
   echo "Flathub repository already exists."
 fi
