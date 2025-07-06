@@ -41,3 +41,5 @@ else
   echo "Failed to clone the repository."
   exit 1
 fi
+
+echo "Created symlinks with GNU Stow!"
