@@ -57,15 +57,21 @@ echo "Updating system..."
 sudo dnf upgrade -y
 
 # Enable services
-# echo "Configuring services..."
-# for service in "${SERVICES[@]}"; do
-#   if ! systemctl is-enabled "$service" &>/dev/null; then
-#     echo "Enabling $service..."
-#     sudo systemctl enable "$service"
-#   else
-#     echo "$service is already enabled"
-#   fi
-# done
+echo "Configuring services..."
+for service in "${SERVICES[@]}"; do
+  if ! systemctl is-enabled "$service" &>/dev/null; then
+    echo "Enabling $service..."
+    sudo systemctl enable "$service"
+  else
+    echo "$service is already enabled"
+  fi
+done
+
+# Enable COPR Repos
+if [ ${#COPR[@]} -gt 0 ]; then
+  echo "Enabling COPR repositories..."
+  enable_copr_repos "${COPR[@]}"
+fi
 
 # Install packages by category
 if [[ "$DEV_ONLY" == true ]]; then
@@ -82,9 +88,6 @@ else
 
   echo "Installing development tools..."
   install_packages "${DEV_TOOLS[@]}"
-
-  echo "Installing COPR packages..."
-  install_packages "${COPR[@]}"
 
   echo "Installing system maintenance tools..."
   install_packages "${MAINTENANCE[@]}"
