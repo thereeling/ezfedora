@@ -39,6 +39,7 @@ if [ $? -eq 0 ]; then
   stow --adopt waybar
   git restore .
   rm -rf ~/.wezterm.lua
+  rm -rf ~/.config/tmux/plugins/*
 else
   echo "Failed to clone the repository."
   exit 1
