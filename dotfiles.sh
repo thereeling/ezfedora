@@ -38,6 +38,7 @@ if [ $? -eq 0 ]; then
   stow --adopt rofi
   stow --adopt waybar
   git restore .
+  rm -rf ~/.wezterm.lua
 else
   echo "Failed to clone the repository."
   exit 1

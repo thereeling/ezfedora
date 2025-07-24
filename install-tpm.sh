@@ -20,6 +20,8 @@ fi
 echo "TPM installed successfully!"
 echo "Now opening tmux session and installing plugins..."
 
+sudo rm -rf ~/.config/tmux/plugins/*
+
 tmux new-session -d -s tpm_install_session
 
 tmux send-keys -t tpm_install_session C-Space "I" C-m

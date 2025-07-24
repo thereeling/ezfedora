@@ -89,6 +89,9 @@ else
   echo "Installing development tools..."
   install_packages "${DEV_TOOLS[@]}"
 
+  echo "Setting zsh as default shell..."
+  chsh -s $(which zsh)
+
   echo "Installing system maintenance tools..."
   install_packages "${MAINTENANCE[@]}"
 
